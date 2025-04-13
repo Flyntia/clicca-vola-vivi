@@ -136,9 +136,3 @@ footer {
     text-align: center;
     padding: 1rem;
 }
-<header>
-    <div class="logo-container">
-        <img src="assets/logo.png" alt="Flyntia Logo" class="logo">
-        <div class="site-name">Flyntia</div>
-    </div>
-</header>
