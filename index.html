@@ -6,7 +6,7 @@
     <title>Flyntia - Prenota il tuo viaggio</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif; /* Font similare a SkyScanner */
             margin: 0;
             padding: 0;
             background-color: #001f3f; /* Sfondo blu scuro */
@@ -15,8 +15,19 @@
         header {
             background-color: #001f3f;
             padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+        }
+        header .logo-container {
+            display: flex;
+            align-items: center;
         }
         header .logo {
+            width: 60px;
+            height: 60px;
+            margin-right: 10px;
+        }
+        header .site-name {
             font-size: 1.5rem;
             font-weight: bold;
             color: white;
@@ -70,12 +81,48 @@
             margin: 0;
             font-size: 0.9rem;
         }
+        .contact-form {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .contact-form button {
+            background-color: #007bff;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .contact-form button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <div class="logo">Flyntia</div>
+        <div class="logo-container">
+            <img src="https://i.imgur.com/your-logo-url-here.png" alt="Flyntia Logo" class="logo">
+            <div class="site-name">Flyntia</div>
+        </div>
     </header>
 
     <!-- Barra di navigazione -->
@@ -103,7 +150,7 @@
         <!-- Sezione Cose da Fare -->
         <section id="cose-da-fare">
             <h2>Cose da Fare</h2>
-            <script async src="https://c89.travelpayouts.com/content?currency=EUR&trs=406431&shmarker=622206&language=it&locale=260932&layout=compact&cards=4&powered_by=true&promo_id=3947" charset="utf-8"></script>
+            <script async src="https://c89.travelpayouts.com/content?currency=EUR&trs=406431&shmarker=622206&language=it&locale=260932&layout=horizontal&cards=4&powered_by=true&promo_id=3947" charset="utf-8"></script>
         </section>
 
         <!-- Sezione Noleggio Auto -->
@@ -124,6 +171,23 @@
             <script async src="https://c1.travelpayouts.com/content?currency=EUR&trs=406431&shmarker=622206&locale=it&from=&to=&country=&powered_by=true&height=&wtype=true&transfers_limit=10&bg_color=%23f5f5f5&button_color=%23239a54&button_font_color=%23ffffff&button_hover_color=%230274da&border_color=%23f9ac1a&input_font_color=%23c8ced4&input_bg_color=%23ffffff&input_label_color=%23c8ced4&icon_bg_color=%23ffffff&icon_arrow_color=%236c7c8c&icon_bg_color_mobile=%23f9ac1a&icon_arrow_color_mobile=%23ffffff&autocomplete_font_color=%23373f47&autocomplete_bg_color=%23ffffff&autocomplete_font_color_active=%23ffffff&autocomplete_bg_color_active=%23239a54&loader_color=%23f9ac1a&empty_color=%23373f47&info_bg_color=%23fff0cc&info_icon_color=%234a4a4a&info_caption_color=%234a4a4a&class_background=%23ffffff&class_font_color=%23373f47&class_header_color=%236c7c8c&class_button_background=%2326a65b&class_button_font_color=%23ffffff&class_button_background_hover=%230274da&class_comment_background=%23bfc0c4&class_comment_font=%23bfc0c4&more_background=&more_background_hover=&more_font_color=%230267c1&notification_background=%23f6f1ec&notification_border_color=%23e37f17&notification_color=%23373f47&transfer_background=%23f6f7f8&transfer_background_hover=%23f6f7f8&transfer_font_color=%23373f47&promo_id=2949" charset="utf-8" async></script>
         </section>
     </main>
+
+    <!-- Form Contatti -->
+    <div class="contact-form">
+        <h2>Contattaci</h2>
+        <form action="https://formsubmit.co/flyntiaservice@libero.it" method="POST">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Messaggio:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <button type="submit">Invia</button>
+        </form>
+    </div>
 
     <!-- Footer -->
     <footer>
