@@ -54,6 +54,153 @@
             margin: 0;
             font-size: 0.9rem;
         }
+        
+        /* Stili per il form Skyscanner */
+        .search-form {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .form-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            color: #007bff;
+            font-weight: bold;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .form-tab.active {
+            border-bottom: 3px solid #007bff;
+            color: #333;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+            margin: 5px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        
+        .passenger-selector {
+            position: relative;
+        }
+        
+        .passenger-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            width: 250px;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .passenger-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .passenger-label {
+            color: #333;
+        }
+        
+        .passenger-controls {
+            display: flex;
+            align-items: center;
+        }
+        
+        .passenger-btn {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #f5f5f5;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .passenger-count {
+            margin: 0 10px;
+            min-width: 20px;
+            text-align: center;
+        }
+        
+        .search-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .search-btn:hover {
+            background-color: #0056b3;
+        }
+        
+        .swap-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #007bff;
+            font-size: 20px;
+            margin: 0 5px;
+        }
+        
+        .date-input {
+            position: relative;
+        }
+        
+        .date-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #007bff;
+        }
     </style>
 </head>
 <body>
@@ -63,6 +210,90 @@
     </header>
 
     <main>
+        <!-- Sezione Ricerca Voli in stile Skyscanner -->
+        <section>
+            <h2>Cerca Voli</h2>
+            <div class="search-form">
+                <div class="form-tabs">
+                    <div class="form-tab active">Andata e ritorno</div>
+                    <div class="form-tab">Solo andata</div>
+                    <div class="form-tab">Multi-città</div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="from">Partenza</label>
+                        <input type="text" id="from" placeholder="Città o aeroporto">
+                    </div>
+                    
+                    <button class="swap-btn" title="Scambia partenza e destinazione">⇄</button>
+                    
+                    <div class="form-group">
+                        <label for="to">Destinazione</label>
+                        <input type="text" id="to" placeholder="Città o aeroporto">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group date-input">
+                        <label for="departure">Partenza</label>
+                        <input type="date" id="departure">
+                        <span class="date-icon">📅</span>
+                    </div>
+                    
+                    <div class="form-group date-input">
+                        <label for="return">Ritorno</label>
+                        <input type="date" id="return">
+                        <span class="date-icon">📅</span>
+                    </div>
+                    
+                    <div class="form-group passenger-selector">
+                        <label for="passengers">Passeggeri</label>
+                        <input type="text" id="passengers" value="1 adulto" readonly>
+                        
+                        <div class="passenger-dropdown" style="display: none;">
+                            <div class="passenger-row">
+                                <span class="passenger-label">Adulti</span>
+                                <div class="passenger-controls">
+                                    <button class="passenger-btn minus">-</button>
+                                    <span class="passenger-count">1</span>
+                                    <button class="passenger-btn plus">+</button>
+                                </div>
+                            </div>
+                            <div class="passenger-row">
+                                <span class="passenger-label">Bambini</span>
+                                <div class="passenger-controls">
+                                    <button class="passenger-btn minus">-</button>
+                                    <span class="passenger-count">0</span>
+                                    <button class="passenger-btn plus">+</button>
+                                </div>
+                            </div>
+                            <div class="passenger-row">
+                                <span class="passenger-label">Neonati</span>
+                                <div class="passenger-controls">
+                                    <button class="passenger-btn minus">-</button>
+                                    <span class="passenger-count">0</span>
+                                    <button class="passenger-btn plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="class">Classe</label>
+                        <select id="class">
+                            <option>Economy</option>
+                            <option>Premium Economy</option>
+                            <option>Business</option>
+                            <option>First Class</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="search-btn">Cerca voli</button>
+            </div>
+        </section>
+
         <!-- Sezione Prenota Voli -->
         <section>
             <h2>Prenota Ora i Tuoi Voli</h2>
@@ -73,6 +304,7 @@
         <section>
             <h2>Cose da Fare</h2>
             <script async src="https://c89.travelpayouts.com/content?currency=EUR&trs=406431&shmarker=622206&language=it&locale=260932&layout=horizontal&cards=4&powered_by=true&promo_id=3947" charset="utf-8"></script>
+        </section>
 
         <!-- Sezione Noleggio Auto -->
         <section>
@@ -96,5 +328,97 @@
     <footer>
         <p>&copy; 2023 Flyntia. Tutti i diritti riservati.</p>
     </footer>
+
+    <script>
+        // JavaScript per il funzionamento del form
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gestione tab
+            const tabs = document.querySelectorAll('.form-tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Gestione passeggeri
+            const passengerInput = document.getElementById('passengers');
+            const passengerDropdown = document.querySelector('.passenger-dropdown');
+            
+            passengerInput.addEventListener('click', function() {
+                passengerDropdown.style.display = passengerDropdown.style.display === 'none' ? 'block' : 'none';
+            });
+            
+            // Chiudi dropdown quando si clicca fuori
+            document.addEventListener('click', function(e) {
+                if (!passengerInput.contains(e.target) && !passengerDropdown.contains(e.target)) {
+                    passengerDropdown.style.display = 'none';
+                }
+            });
+            
+            // Gestione incremento/decremento passeggeri
+            const minusBtns = document.querySelectorAll('.passenger-btn.minus');
+            const plusBtns = document.querySelectorAll('.passenger-btn.plus');
+            const passengerCounts = document.querySelectorAll('.passenger-count');
+            
+            minusBtns.forEach((btn, index) => {
+                btn.addEventListener('click', function() {
+                    let count = parseInt(passengerCounts[index].textContent);
+                    if (count > (index === 0 ? 1 : 0)) {
+                        count--;
+                        passengerCounts[index].textContent = count;
+                        updatePassengerInput();
+                    }
+                });
+            });
+            
+            plusBtns.forEach((btn, index) => {
+                btn.addEventListener('click', function() {
+                    let count = parseInt(passengerCounts[index].textContent);
+                    count++;
+                    passengerCounts[index].textContent = count;
+                    updatePassengerInput();
+                });
+            });
+            
+            function updatePassengerInput() {
+                const adults = parseInt(passengerCounts[0].textContent);
+                const children = parseInt(passengerCounts[1].textContent);
+                const infants = parseInt(passengerCounts[2].textContent);
+                
+                let text = `${adults} adult${adults !== 1 ? 'i' : 'o'}`;
+                if (children > 0) text += `, ${children} bambin${children !== 1 ? 'i' : 'o'}`;
+                if (infants > 0) text += `, ${infants} neonat${infants !== 1 ? 'i' : 'o'}`;
+                
+                passengerInput.value = text;
+            }
+            
+            // Gestione scambio partenza/destinazione
+            const swapBtn = document.querySelector('.swap-btn');
+            swapBtn.addEventListener('click', function() {
+                const fromInput = document.getElementById('from');
+                const toInput = document.getElementById('to');
+                const temp = fromInput.value;
+                fromInput.value = toInput.value;
+                toInput.value = temp;
+            });
+            
+            // Imposta date di default
+            const today = new Date();
+            const tomorrow = new Date();
+            tomorrow.setDate(today.getDate() + 1);
+            
+            const departureInput = document.getElementById('departure');
+            const returnInput = document.getElementById('return');
+            
+            departureInput.valueAsDate = today;
+            returnInput.valueAsDate = tomorrow;
+            
+            // Formattazione date per l'input
+            function formatDate(date) {
+                return date.toISOString().split('T')[0];
+            }
+        });
+    </script>
 </body>
 </html>
